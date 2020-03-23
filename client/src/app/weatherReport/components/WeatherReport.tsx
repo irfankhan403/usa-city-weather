@@ -143,6 +143,6 @@ const useStyles = makeStyles((theme:any) => ({
         padding: 10,
       },
       button:{
-          zIndex:-1
+
       }
 }));
