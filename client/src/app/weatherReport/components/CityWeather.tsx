@@ -58,7 +58,7 @@ export default CityWeather;
 const useStyles = makeStyles({
     root: {
         maxWidth: 400,
-        width: 400,
+        width: "100%",
         marginTop: 20,
     },
     title: {

@@ -13,21 +13,9 @@ import {
 import SearchIcon from '@material-ui/icons/Search';
 import { makeStyles } from "@material-ui/core/styles";
 import CityList from "./CityList";
-import { _get } from "../../../services/common";
-
 import CityWeather from "./CityWeather";
 import { CityBody } from '../types/CityBody';
-
-
-
-
-
-function useOutsideAlerter(ref :RefObject<HTMLElement>) {
-
-    
-  
-    
-  }
+import useDebounce from '../../common/components/useDebounce'
 
 interface WeatherReportProps{
     getCityList:(query:string)=>void
@@ -42,8 +30,13 @@ const WeatherReport = (props: WeatherReportProps)=> {
     const [showList, setShowList] = useState(false);
     const [selected, setSelected] = useState<CityBody | undefined>(undefined);
     const classes = useStyles();
+
+    const debouncedSearchValue = useDebounce(value, 500);
+
     useEffect(() => {
-        props.getCityList(value)
+        if (debouncedSearchValue) {
+            props.getCityList(value)
+        }
         document.addEventListener("mousedown", handleClickOutside);
         return () => {
           document.removeEventListener("mousedown", handleClickOutside);
@@ -81,7 +74,7 @@ const WeatherReport = (props: WeatherReportProps)=> {
                             placeholder="Search City"
                             inputProps={{ 'aria-label': 'search city' }}
                             value={value}
-                            onChange={e => setValue(e.target.value)}
+                            onChange={(e:any) => setValue(e.target.value)}
                             onFocus={()=>setShowList(true)}
                         />
                         <IconButton type="submit" className={classes.iconButton} aria-label="search">
@@ -94,7 +87,7 @@ const WeatherReport = (props: WeatherReportProps)=> {
                     </Paper>
                     </Grid>
                     <Grid item xs={12} md={3} sm={3} className={classes.formWrapper} style={{justifyContent:"left"}}>
-                    <Button variant="contained" className={classes.button} color="primary" onClick={()=>getReport()} disabled={selected==undefined}>
+                    <Button variant="contained" className={classes.button} color="primary" onClick={()=>getReport()} disabled={selected ===undefined}>
                         Get Weather Report
                     </Button>
                     </Grid>
@@ -119,7 +112,7 @@ const mapDispatchToProps ={
 
 export default connect(mapStateToProps, mapDispatchToProps)(WeatherReport);
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme:any) => ({
     alignContentCenter:{
         marginTop:30,
         display:"flex",
@@ -150,5 +143,6 @@ const useStyles = makeStyles(theme => ({
         padding: 10,
       },
       button:{
+          zIndex:-1
       }
 }));

@@ -45,11 +45,10 @@ const CityList = (props: CityListProps) => {
 export default CityList;
 
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
     root: {
-        width: 400,
-        zIndex: 9,
-        backgroundColor: theme.palette.background.paper,
+        width: "100%",
+        zIndex: 9
     },
     listItem: {
 
@@ -59,5 +58,6 @@ const useStyles = makeStyles(theme => ({
         top: "55px",
         maxHeight: "400px",
         overflow: "auto",
+        width: "100%",
     }
-}));
+});

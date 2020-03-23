@@ -1,0 +1,1 @@
+{"version":3,"sources":["index.css"],"names":[],"mappings":"AAAA,KACI,YAAa,CACb,QAAS,CACT,SAAU,CACV,SAAU,CACV,wBACJ","file":"main.b5f0e085.chunk.css","sourcesContent":["body{\n    height: 100vh;\n    margin: 0;\n    padding: 0;\n    outline: 0;\n    background-color: #f0f6f9;\n}"]}
