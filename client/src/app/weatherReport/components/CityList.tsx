@@ -59,5 +59,6 @@ const useStyles = makeStyles({
         maxHeight: "400px",
         overflow: "auto",
         width: "100%",
+        zIndex: 9,
     }
 });
